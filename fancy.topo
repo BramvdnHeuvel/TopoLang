@@ -1,2 +1,3 @@
-X = {a,b}
-Print[DiscreteTopology[X]] ==> {{}, {a}, {b}, {a, b}}
+X = {a,b};
+Print[DiscreteTopology[X]]; $ ==> {{}, {a}, {b}, {a, b}}
+y = RandomTopology[X];
