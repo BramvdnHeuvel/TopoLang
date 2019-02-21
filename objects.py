@@ -1,30 +1,18 @@
-def make_set():
+def test_levels(data_set):
+    """Check if all brackets are done correctly."""
+    stack = []
+    haakjes = {'{': '}', '[': ']', '(': ')'}
 
-def make_variable():
-    value = ''
+    for sign in data_set:
+        char = sign[0]
 
-    for char in input:
-        if char == ' ' and value != '':
-            break
-
-        if char == '\n':
-            break
-
-        if char == ',':
-            if value == '':
-                print('ERROR: Line ended while interpreting a variable!')
-                # TODO: Raise error.
-            else:
-                break
-
-        if char == '{':
-            if value == '':
-                make_set(input)
-            else:
-                print('ERROR: Attempting to define multiple variables on one line.')
-                # TODO: Raise error.
-
-        else:
-            value += char
+        if char in haakjes:
+            stack.append((haakjes[char],sign))
+            current_line = sign[1]
+            current_column = sign[2]
+        
+        if len(stack) > 0 and char == stack[-1][0]:
+            stack.pop()
+            # TODO: Make sure the closing bracket is followed by an operator, a closing bracket of or a ;.
     
-    return value
+    return stack == []
